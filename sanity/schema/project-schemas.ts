@@ -14,8 +14,10 @@ const project = {
             name: 'slug',
             title: 'Slug',
             type: 'slug',
-            /* reference to name can generate what is inputed on name */
-            options: { source: 'name' }
+            options: {
+                source: 'name',
+
+            }
         },
         {
             name: 'image',
@@ -45,3 +47,4 @@ const project = {
 }
 
 export default project
+
