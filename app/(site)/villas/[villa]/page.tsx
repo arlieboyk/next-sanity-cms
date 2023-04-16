@@ -1,10 +1,9 @@
-import { getVillaImages, getVillas } from "@/sanity/sanity.utils";
+import { getVillas } from "@/sanity/sanity.utils";
 import Image from "next/image";
 
 export default async function page() {
   const villas = await getVillas();
-  const villaImages = await getVillaImages();
-  console.log("images ", villaImages);
+  console.log("villas ", villas);
   return (
     <div>
       <h1>Villas</h1>
@@ -13,12 +12,12 @@ export default async function page() {
         return (
           <div key={villa._id}>
             <h1> {villa.name}</h1>
-            {/* <Image
+            <Image
               src={villa.image}
               width={500}
               height={500}
               alt={villa.name}
-            /> */}
+            />
           </div>
         );
       })}
