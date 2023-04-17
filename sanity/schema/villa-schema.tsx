@@ -9,6 +9,14 @@ export const Villa = {
       type: "string",
     },
     {
+      name: "price",
+      title: "Price",
+      type: "number",
+      options: {
+        min: 0,
+      },
+    },
+    {
       name: "slug",
       title: "Slug",
       type: "slug",
@@ -18,16 +26,29 @@ export const Villa = {
     },
     {
       name: "image",
-      title: "Image",
+      title: "Set Image",
       type: "array",
-      of: [{ type: "image" }],
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "name",
+              title: "Name",
+              type: "string",
+              description: "Image deescription",
+            },
+            {
+              name: "image",
+              titlge: "Image",
+              type: "image",
+            },
+          ],
+        },
+      ],
       options: { hotspot: true },
     },
-    {
-      name: "url",
-      title: "Url",
-      type: "url",
-    },
+
     {
       name: "content",
       title: "Content",

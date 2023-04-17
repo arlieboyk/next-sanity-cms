@@ -1,6 +1,7 @@
 import { getPages } from "@/sanity/sanity.utils";
 import "../globals.css";
 import Link from "next/link";
+import NavBar from "../components/NavBar";
 
 export const metadata = {
   title: "Create Next App",
@@ -17,22 +18,14 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* <NavBar pages={pages} /> */}
-        <header className="flex px-5 py-3   gap-3 justify-between ">
+        <header className="flex px-5 py-3 text-gray-600    gap-3 justify-between ">
           <div>
-            <h1 className="font-bold text-3xl">CMS</h1>
+            <Link href="/" className="font-bold text-3xl">
+              CMS
+            </Link>
           </div>
-          <nav className="space-x-3">
-            {pages.map((page) => (
-              <Link
-                href={`/${page.slug}`}
-                key={page._id}
-                className="font-bold hover:scale-105 transition"
-              >
-                {page.name}
-              </Link>
-            ))}
-          </nav>
+
+          <NavBar pages={pages} />
         </header>
         {children}
       </body>

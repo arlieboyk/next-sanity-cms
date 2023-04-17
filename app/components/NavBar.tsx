@@ -1,33 +1,25 @@
-// "use client";
+"use client";
 import { Page } from "@/types/Page";
 import Link from "next/link";
-// import { useState, useEffect } from "react";
-const NavBar = async () => {
-  //   const [pages, setPages] = useState<Page[]>([]);
+import { useEffect, useState } from "react";
+import { PortableTextBlock } from "sanity";
 
-  //   useEffect(() => {
-  //     async function fetchPages() {
-  //       const pages = await getPages();
-  //       if (pages) {
-  //         setPages(pages);
-  //       }
-  //       console.log("empty pages");
-  //     }
-  //     fetchPages();
-  //   }, []);
+const NavBar = ({ pages }: { pages: Page[] }) => {
+  const [page, setPages] = useState<Page[]>([]);
+  useEffect(() => {
+    // console.log("navbar: ", pages);
+    if (pages) {
+      setPages(pages);
+    }
+  }, [page]);
   return (
-    // <header>
-    //   {pages.length ? (
-    //     pages.map((page):any => (
-    //       <nav key={page._id} className="flex gap-2">
-    //         <Link href={`/${page.name}`}> {page.name}</Link>
-    //       </nav>
-    //     ))
-    //   ) : (
-    //     <div>No data</div>
-    //   )}
-    // </header>
-    <div></div>
+    <nav className="space-x-3 flex ">
+      {page.map((page) => (
+        <Link href={`/${page.slug}`} className="hover:font-bold transition">
+          {page.name}
+        </Link>
+      ))}
+    </nav>
   );
 };
 
