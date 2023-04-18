@@ -1,3 +1,5 @@
+import { Rule } from "sanity";
+
 export const Villa = {
   name: "villa",
   title: "Villa",
@@ -7,6 +9,7 @@ export const Villa = {
       name: "name",
       title: "Name",
       type: "string",
+      validation: (rule: Rule) => rule.required(),
     },
     {
       name: "price",
@@ -25,7 +28,22 @@ export const Villa = {
       },
     },
     {
-      name: "image",
+      name: "banner",
+      title: "Banner",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+        },
+      ],
+    },
+    {
+      name: "images",
       title: "Set Image",
       type: "array",
       of: [

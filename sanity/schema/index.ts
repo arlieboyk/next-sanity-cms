@@ -1,7 +1,8 @@
 import pages from "./pages-schema";
 import project from "./project-schemas";
-import { Villa } from "./villa-schema";
+import { villaBanner } from "./villa/villa-banner";
+import { Villa } from "./villa/villa-schema";
 
-const schemas = [project, Villa, pages]
+const schemas = [project, Villa, pages, villaBanner];
 
-export default schemas
+export default schemas;

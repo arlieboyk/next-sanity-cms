@@ -6,6 +6,7 @@ export type Villa = {
   name: string;
   slug: string;
   url: string;
-  image: string;
+  bannerUrl: string;
+  imageUrl: [string];
   content: PortableTextBlock[];
 };

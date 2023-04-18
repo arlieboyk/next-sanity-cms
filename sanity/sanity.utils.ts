@@ -2,7 +2,7 @@ import { Page } from "@/types/Page";
 import { Project } from "@/types/Project";
 import { Villa } from "@/types/Villa";
 import { createClient, groq } from "next-sanity";
-
+import imageUrlBuilder from "@sanity/image-url";
 const client = createClient({
   projectId: "lkmhcppf",
   dataset: "production",
@@ -47,7 +47,7 @@ export async function getVillas(): Promise<Villa[]> {
             _createdAt,
             name,
             "slug": slug.current,
-            "image": image.asset->url,
+            "bannerUrl":banner.asset->url,
             url,
             content   
         }`
@@ -60,6 +60,8 @@ export async function getVilla(slug: string): Promise<Villa> {
       _createdAt,
       name,
       "slug": slug.current,
+      "imageUrl": images[].image.asset->url,
+      image,    
       url,
       content   
     }`,
@@ -67,16 +69,19 @@ export async function getVilla(slug: string): Promise<Villa> {
   );
 }
 
-type image = {
-  image: string;
+export type ImageType = {
+  imageUrl: [];
+  imageName: [];
 };
-export async function getVillaImage(slug: string): Promise<image> {
+
+export async function getVillaImage(slug: string): Promise<ImageType[]> {
   return client.fetch(
-    groq`*[_type == "villa" && $slug == slug.current][0]{
-        
-  }
-}`,
-    { slug }
+    groq`*[_type == "villa" && $slug == slug.current ] {
+      "imageUrl": images[].image.asset->url,
+      "imageName": images[].name
+    
+    }`,
+    { slug: slug }
   );
 }
 
@@ -107,4 +112,7 @@ export async function getPageInfo(slug: string): Promise<Page> {
         }`,
     { slug: slug }
   );
+}
+function urlFor(image: any) {
+  throw new Error("Function not implemented.");
 }
