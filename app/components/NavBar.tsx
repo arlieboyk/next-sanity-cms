@@ -15,7 +15,11 @@ const NavBar = ({ pages }: { pages: Page[] }) => {
   return (
     <nav className="space-x-3 flex ">
       {page.map((page) => (
-        <Link href={`/${page.slug}`} className="hover:font-bold transition">
+        <Link
+          key={page._id}
+          href={`/${page.slug}`}
+          className="hover:font-bold transition"
+        >
           {page.name}
         </Link>
       ))}

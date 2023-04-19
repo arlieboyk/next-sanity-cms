@@ -18,7 +18,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header className="flex px-5 py-3 text-gray-600    gap-3 justify-between ">
+        <header className="flex px-5 py-3 text-gray-600    gap-3 justify-between  items-center">
           <div>
             <Link href="/" className="font-bold text-3xl">
               CMS
