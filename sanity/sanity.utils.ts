@@ -60,6 +60,7 @@ export async function getVilla(slug: string): Promise<Villa> {
       _createdAt,
       name,
       "slug": slug.current,
+      image,
       url,
       content   
     }`,
@@ -72,10 +73,11 @@ type image = {
 };
 export async function getVillaImage(slug: string): Promise<image> {
   return client.fetch(
-    groq`*[_type == "villa" && $slug == slug.current][0]{
-        
-  }
-}`,
+    groq`*[_type == 'your_document_type']{
+        'name': image[].name,
+        'description': image[].description,
+        'imageUrl': image[].image.asset->url,
+      }`,
     { slug }
   );
 }
